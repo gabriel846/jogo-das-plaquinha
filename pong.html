@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>pong</title>
     <style>
-        canvas{
+        canvas{/*todas as medidas de largura e altura das peças*/
             position: absolute;
             left: 50%;
             top: 50%;
@@ -15,12 +15,12 @@
     </style>
 </head>
 <body>
-    <canvas height="600" width="600" id="mycanvas"></canvas>
+    <canvas height="600" width="600" id="mycanvas"></canvas> <-medidas das bordas q contornam a area do projeto ->
     <script>
-        var canvas = document.getElementById("mycanvas");
-        var ctx = canvas.getContext("2d");
+        var canvas = document.getElementById("mycanvas");/*chamar o canvas*/
+        var ctx = canvas.getContext("2d");/*estilo do projeto 2d*/
 
-        var teclas = {};
+        var teclas = {};/*configuraçao das teclas q serao utilizadas para mover e configurar*/
         
         var esquerda = {
             x: 10,
@@ -59,7 +59,7 @@
             delete teclas[e.keyCode];
          }, false);
 
-         function movebloco(){
+         function movebloco(){/*mover a barra */
              if(87 in teclas && esquerda.y > 0)
                  esquerda.y -= esquerda.speed;
             else if(83 in teclas && esquerda.y + esquerda.altura < canvas.height)
@@ -70,7 +70,7 @@
                  direita.y += direita.speed;        
          };
         
-        function movebola() {
+        function movebola() {/*movimentos da bola ir para um lado e para o outro*/
             if(bola.y + bola.altura >= esquerda.y && bola.y <=esquerda.y + esquerda.altura && bola.x <= esquerda.x + esquerda.largura) {
                 bola.dirx = 1;
                 bola.mod +=  0.2;
@@ -96,7 +96,7 @@
                  newgame("Player 1");               
         }
         
-        function newgame(winner){
+        function newgame(winner){/*quando algum dos players atingir o numero de pontos necessario para ganhar exibir texto de vencedor */
             if(winner == "Player 1")
                 ++esquerda.score;
             else
@@ -109,7 +109,7 @@
             bola.mod = 0;
         };
 
-        function desenha() {
+        function desenha() {/*o que desenha o movimento da bola e dos blocos */
              
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
